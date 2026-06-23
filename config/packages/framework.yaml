@@ -1,0 +1,20 @@
+# config/packages/framework.yaml
+framework:
+    secret: '%env(APP_SECRET)%'
+
+    session: true
+
+    asset_mapper:
+        enabled: true
+        importmap_path: '%kernel.project_dir%/config/importmap.php'
+        paths:
+            - '%kernel.project_dir%/assets'
+
+
+when@test:
+    framework:
+        test: true
+        session:
+            storage_factory_id: session.storage.factory.mock_file
+
+

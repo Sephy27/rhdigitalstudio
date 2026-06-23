@@ -1,0 +1,92 @@
+{# templates/login/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion admin - RH Digital Studio{% endblock %}
+
+{% block body %}
+<main class="login-rhds-page">
+    <div class="login-rhds-bg"></div>
+
+    <div class="login-rhds-container">
+
+        <div class="login-rhds-brand">
+            <img src="{{ asset('images/logo_header.png') }}" alt="RH Digital Studio">
+            <span>Espace administrateur</span>
+            <h1>Connexion sécurisée</h1>
+            <p>
+                Accédez à votre tableau de bord RH Digital Studio pour gérer les clients,
+                interventions, devis, factures et rapports PDF.
+            </p>
+        </div>
+
+        <div class="login-rhds-card">
+
+            <div class="login-rhds-icon">
+                <i class="bi bi-shield-lock-fill"></i>
+            </div>
+
+            <h2>Administration</h2>
+            <p class="login-rhds-muted">Connectez-vous pour continuer.</p>
+
+            {% if error %}
+                <div class="alert alert-danger small mb-3" role="alert">
+                    <i class="bi bi-exclamation-triangle-fill me-1"></i>
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                </div>
+            {% endif %}
+
+            <form action="{{ path('app_login') }}" method="post" novalidate>
+
+                <div class="login-field">
+                    <label for="username">Adresse e-mail</label>
+                    <div class="login-input">
+                        <i class="bi bi-envelope"></i>
+                        <input
+                            type="email"
+                            id="username"
+                            name="_username"
+                            value="{{ last_username }}"
+                            required
+                            autocomplete="email"
+                            placeholder="vous@exemple.fr"
+                        >
+                    </div>
+                </div>
+
+                <div class="login-field">
+                    <label for="password">Mot de passe</label>
+                    <div class="login-input">
+                        <i class="bi bi-key"></i>
+                        <input
+                            type="password"
+                            id="password"
+                            name="_password"
+                            required
+                            autocomplete="current-password"
+                            placeholder="Votre mot de passe"
+                        >
+                    </div>
+                </div>
+
+                <input
+                    type="hidden"
+                    name="_csrf_token"
+                    data-controller="csrf-protection"
+                    value="{{ csrf_token('authenticate') }}"
+                >
+
+                <button type="submit" class="login-rhds-button">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    Se connecter
+                </button>
+            </form>
+
+            <div class="login-rhds-footer">
+                Accès réservé à RH Digital Studio
+            </div>
+
+        </div>
+    </div>
+</main>
+{% endblock %}
+

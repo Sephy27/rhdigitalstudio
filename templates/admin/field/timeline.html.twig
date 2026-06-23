@@ -1,0 +1,77 @@
+{% set intervention = entity.instance %}
+<div class="timeline-card">
+    <div class="timeline-wrapper">
+
+        <div class="timeline-item">
+            <div class="timeline-dot success"></div>
+            <div>
+                <strong>🟢 Intervention créée</strong><br>
+                <small>{{ intervention.createdAt|date('d/m/Y H:i') }}</small>
+            </div>
+        </div>
+
+        {% if intervention.scheduledAt %}
+            <div class="timeline-item">
+                <div class="timeline-dot info"></div>
+                <div>
+                    <strong>📅 Rendez-vous planifié</strong><br>
+                    <small>{{ intervention.scheduledAt|date('d/m/Y H:i') }}</small>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if intervention.startedAt %}
+            <div class="timeline-item">
+                <div class="timeline-dot primary"></div>
+                <div>
+                    <strong>🔵 Intervention démarrée</strong><br>
+                    <small>{{ intervention.startedAt|date('d/m/Y H:i') }}</small>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if intervention.completedAt %}
+            <div class="timeline-item">
+                <div class="timeline-dot done"></div>
+                <div>
+                    <strong>✅ Intervention terminée</strong><br>
+                    <small>{{ intervention.completedAt|date('d/m/Y H:i') }}</small>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if intervention.invoiceAt %}
+            <div class="timeline-item">
+                <div class="timeline-dot invoice"></div>
+                <div>
+                    <strong>📄 Facture générée</strong><br>
+                    <small>
+                        {{ intervention.invoiceNumber }}
+                        — {{ intervention.invoiceAt|date('d/m/Y H:i') }}
+                    </small>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if intervention.invoiceSentAt %}
+            <div class="timeline-item">
+                <div class="timeline-dot mail"></div>
+                <div>
+                    <strong>✉️ Facture envoyée</strong><br>
+                    <small>{{ intervention.invoiceSentAt|date('d/m/Y H:i') }}</small>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if intervention.paidAt %}
+            <div class="timeline-item">
+                <div class="timeline-dot paid"></div>
+                <div>
+                    <strong>💰 Paiement reçu</strong><br>
+                    <small>{{ intervention.paidAt|date('d/m/Y H:i') }}</small>
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+</div>

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<style>
+    {% include 'admin/pdf/pdf.css' %}
+</style>
+<div class="document-header">
+
+    <div class="company-block">
+        <img src="images/logo_header.png" class="logo">
+
+        <p>
+            RH Digital Studio<br>
+            Gaillon et alentours<br>
+            contact@rhdigitalstudio.fr<br>
+            06 42 88 70 16
+        </p>
+    </div>
+
+    <div class="client-block">
+        <h3>CLIENT</h3>
+
+        <p>
+            {{ intervention.client.firstName }}
+            {{ intervention.client.lastName }}<br>
+
+            {{ intervention.client.email }}<br>
+
+            {{ intervention.client.phone }}
+        </p>
+    </div>
+
+</div>
+
+<div class="document-title">
+    <h1>DEVIS</h1>
+
+    <p>
+        N° {{ intervention.quoteNumber }}<br>
+        Date : {{ intervention.quoteAt|date('d/m/Y') }}
+    </p>
+</div>
+
+<div class="box">
+    <div class="title">Intervention</div>
+    <p>
+        Date : {{ intervention.interventionDate|date('d/m/Y H:i') }}<br>
+        Type : {{ intervention.type }}<br>
+        Matériel : {{ intervention.device ?: 'Non renseigné' }}<br>
+        Système : {{ intervention.operatingSystem ?: 'Non renseigné' }}
+    </p>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th>Durée</th>
+            <th>Prix</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <strong>{{ intervention.type }}</strong><br>
+                Problème : {{ intervention.problem }}<br>
+                Actions : {{ intervention.actionsDone ?: 'Non renseigné' }}
+            </td>
+            <td>{{ intervention.duration ?: '-' }}</td>
+            <td>{{ intervention.price|number_format(2, ',', ' ') }} €</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="total">
+    Montant estimé : {{ intervention.price|number_format(2, ',', ' ') }} €
+</div>
+
+<p class="vat">
+    TVA non applicable, article 293 B du CGI.
+</p>
+
+<div class="signature">
+
+    <table class="signature-table">
+        <tr>
+            <td>
+                Signature client
+            </td>
+
+            <td>
+                Signature RH Digital Studio
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+<div class="footer">
+    RH Digital Studio — Dépannage informatique & création de sites web — Gaillon et alentours
+</div>
+
+</body>
+</html>

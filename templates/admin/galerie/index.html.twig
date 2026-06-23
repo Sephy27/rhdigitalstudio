@@ -1,0 +1,36 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title %}Galerie{% endblock %}
+
+{% block body %}
+<div class="container">
+    <a class="btn btn-sm bg-primary text-light mt-5" href="{{ path('app_admin_galeries_add') }}">Ajouter une image</a>
+    
+    <table class="table">
+    <thead>
+        <tr>
+            <th>Titre</th>
+            <th style="width: 200px">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for galerie in galerie %}
+     <tr>
+         <td>
+            <a href="{{ path('app_admin_galeries_show', {id: galerie.id}) }}">{{ galerie.name }}</a>
+        </td>
+        <td>
+            <div class="d-flex gap-1">
+                <a class="btn btn-success btn-sm" href="{{ path('app_admin_galeries_edit', {id: galerie.id}) }}">Editer</a>
+                <form action="{{ path('app_admin_galeries_delete', {id: galerie.id}) }}" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-danger btn">Supprimer</button>
+                </form>
+            </div>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+</div>
+{% endblock %}

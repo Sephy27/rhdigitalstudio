@@ -1,0 +1,189 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}À propos | RH Digital Studio{% endblock %}
+
+{% block body %}
+
+<main class="about-page">
+
+  <section class="about-page-hero">
+    <div class="container">
+      <span class="section-label">À propos</span>
+      <h1>Un service informatique et digital de proximité.</h1>
+      <p>
+        RH Digital Studio accompagne particuliers, indépendants, artisans et petites entreprises
+        dans leurs besoins informatiques et leur présence digitale.
+      </p>
+    </div>
+  </section>
+
+  <section class="about-story">
+    <div class="container about-story-grid">
+
+      <div class="about-story-content">
+        <span class="section-label">Mon approche</span>
+
+        <h2>Des solutions simples, fiables et adaptées.</h2>
+
+        <p>
+          Passionné par l’informatique, le web et la création de solutions utiles,
+          j’ai créé RH Digital Studio pour proposer un service clair, accessible
+          et de proximité.
+        </p>
+
+        <p>
+          L’objectif est simple : aider les particuliers à résoudre leurs problèmes
+          informatiques et accompagner les professionnels dans la création d’une
+          présence digitale moderne et crédible.
+        </p>
+
+        <p>
+          Chaque projet est traité avec sérieux, écoute et transparence,
+          que ce soit pour un dépannage, une réinstallation Windows, une optimisation PC
+          ou la création d’un site vitrine professionnel.
+        </p>
+      </div>
+
+      <div class="about-story-card">
+        <div class="about-story-icon">
+          <i class="fa-solid fa-user-gear"></i>
+        </div>
+
+        <h3>RH Digital Studio</h3>
+
+        <ul>
+          <li>Service local à Gaillon et dans un rayon de 30 km</li>
+          <li>Dépannage informatique à domicile</li>
+          <li>Création de sites web modernes</li>
+          <li>Accompagnement clair et humain</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="about-values">
+    <div class="container">
+      <div class="section-center">
+        <span class="section-label">Valeurs</span>
+        <h2>Ce qui guide chaque prestation.</h2>
+      </div>
+
+      <div class="values-grid">
+
+        <article class="value-card">
+          <div class="value-icon">
+            <i class="fa-solid fa-handshake"></i>
+          </div>
+          <h3>Confiance</h3>
+          <p>
+            Une relation simple, honnête et transparente avec chaque client.
+          </p>
+        </article>
+
+        <article class="value-card">
+          <div class="value-icon">
+            <i class="fa-solid fa-bolt"></i>
+          </div>
+          <h3>Réactivité</h3>
+          <p>
+            Des solutions rapides et adaptées aux besoins réels du client.
+          </p>
+        </article>
+
+        <article class="value-card">
+          <div class="value-icon">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <h3>Sérieux</h3>
+          <p>
+            Une prestation réalisée avec méthode, soin et attention aux détails.
+          </p>
+        </article>
+
+        <article class="value-card">
+          <div class="value-icon">
+            <i class="fa-solid fa-laptop-code"></i>
+          </div>
+          <h3>Modernité</h3>
+          <p>
+            Des solutions web actuelles, responsive et pensées pour durer.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="about-profile">
+    <div class="container about-profile-grid">
+
+      <div class="profile-card">
+        <div class="profile-avatar">
+          <i class="fa-solid fa-code"></i>
+        </div>
+
+        <h2>Un profil polyvalent</h2>
+
+        <p>
+          Mon parcours professionnel m’a permis de développer de la rigueur,
+          de l’organisation et un vrai sens du service client.
+        </p>
+
+        <p>
+          Aujourd’hui, je mets cette polyvalence au service de projets utiles :
+          dépannage informatique, accompagnement numérique et création de sites web.
+        </p>
+      </div>
+
+      <div class="skills-grid">
+
+        <div class="skill-item">
+          <span>01</span>
+          <strong>Dépannage informatique</strong>
+          <p>Diagnostic, optimisation, installation et assistance.</p>
+        </div>
+
+        <div class="skill-item">
+          <span>02</span>
+          <strong>Développement web</strong>
+          <p>Sites vitrines, Symfony, HTML, CSS, JavaScript.</p>
+        </div>
+
+        <div class="skill-item">
+          <span>03</span>
+          <strong>Design & responsive</strong>
+          <p>Interfaces modernes, propres et adaptées mobile.</p>
+        </div>
+
+        <div class="skill-item">
+          <span>04</span>
+          <strong>Accompagnement local</strong>
+          <p>Écoute, conseils et suivi personnalisé.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="about-cta">
+    <div class="container">
+      <div class="about-cta-card">
+        <span class="section-label">Besoin d’aide ?</span>
+        <h2>Parlons de votre besoin informatique ou digital.</h2>
+        <p>
+          Que vous ayez besoin d’un dépannage, d’un conseil ou d’un site web,
+          je peux vous accompagner avec une solution claire et adaptée.
+        </p>
+
+        <a href="{{ path('app_contact') }}" class="btn btn-primary">
+          Me contacter
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+{% endblock %}

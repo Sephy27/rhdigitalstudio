@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<style>
+    {% include 'admin/pdf/pdf.css' %}
+
+
+
+.report-signature {
+    margin-top: 30px;
+    page-break-inside: avoid;
+}
+
+.report-signature .signature-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.report-signature .signature-table td {
+    width: 50%;
+    border: 1px solid #d0d7de;
+    height: 90px;
+    vertical-align: top;
+    padding: 10px;
+}
+
+    .report-section {
+        page-break-inside: avoid;
+    }
+
+    .photos-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    }
+
+    .photos-table td {
+        width: 50%;
+        text-align: center;
+        vertical-align: top;
+        border: none;
+        padding: 8px;
+    }
+
+    .report-photo {
+        width: auto;
+        height: auto;
+        max-width: 320px;
+        max-height: 240px;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        margin-bottom: 10px;
+    }
+</style>
+
+
+<div class="document-header">
+
+    <div class="company-block">
+        <img src="images/logo_header.png" class="logo">
+
+        <p>
+            RH Digital Studio<br>
+            Gaillon et alentours<br>
+            contact@rhdigitalstudio.fr<br>
+            06 42 88 70 16
+        </p>
+    </div>
+
+    <div class="client-block">
+        <h3>CLIENT</h3>
+
+        <p>
+            {{ intervention.client.firstName ?: '' }}
+            {{ intervention.client.lastName ?: '' }}<br>
+
+            {{ intervention.client.email ?: 'Email non renseigné' }}<br>
+            {{ intervention.client.phone ?: 'Téléphone non renseigné' }}<br>
+            {{ intervention.client.address ?: 'Adresse non renseignée' }}
+        </p>
+    </div>
+
+</div>
+
+<div class="document-title">
+    <h1>RAPPORT D'INTERVENTION</h1>
+
+    <p>
+        Intervention n° {{ intervention.id }}<br>
+        Date : {{ intervention.interventionDate ? intervention.interventionDate|date('d/m/Y H:i') : 'Non renseignée' }}
+    </p>
+</div>
+
+<div class="box report-section">
+    <div class="title">Intervention</div>
+
+    <p>
+        Date prévue : {{ intervention.scheduledAt ? intervention.scheduledAt|date('d/m/Y H:i') : 'Non renseignée' }}<br>
+        Date réalisée : {{ intervention.interventionDate ? intervention.interventionDate|date('d/m/Y H:i') : 'Non renseignée' }}<br>
+        Type : {{ intervention.type ?: 'Non renseigné' }}<br>
+        Durée : {{ intervention.duration ?: 'Non renseignée' }}<br>
+        Matériel : {{ intervention.device ?: 'Non renseigné' }}<br>
+        Système : {{ intervention.operatingSystem ?: 'Non renseigné' }}<br>
+        Numéro de série : {{ intervention.serialNumber ?: 'Non renseigné' }}<br>
+        
+    </p>
+</div>
+
+
+
+<div class="box report-section">
+    <div class="title">Problème signalé</div>
+    <p>{{ intervention.problem ?: 'Non renseigné' }}</p>
+</div>
+
+<div class="box report-section">
+    <div class="title">Diagnostic</div>
+    <p>{{ intervention.diagnostic ?: 'Non renseigné' }}</p>
+</div>
+
+<div class="box report-section">
+    <div class="title">Actions réalisées</div>
+    <p>{{ intervention.actionsDone ?: 'Non renseigné' }}</p>
+</div>
+{% if intervention.recommendations %}
+<div class="box report-section">
+    <div class="title">Recommandations du technicien</div>
+
+    <p>
+        {{ intervention.recommendations|nl2br }}
+    </p>
+</div>
+{% endif %}
+{% if intervention.replacedParts %}
+<div class="box report-section">
+    <div class="title">Pièces remplacées / matériel utilisé</div>
+
+    <p>
+        {{ intervention.replacedParts|nl2br }}
+    </p>
+</div>
+{% endif %}
+<div class="box report-section">
+    <div class="title">Suivi administratif</div>
+
+    <p>
+        <strong>Prix :</strong>
+        {{ intervention.price|number_format(2, ',', ' ') }} €
+        <br><br>
+
+        <strong>Facture :</strong>
+
+        {% if intervention.invoiceNumber %}
+            {{ intervention.invoiceNumber }}
+        {% else %}
+            Non générée
+        {% endif %}
+
+        <br><br>
+
+        <strong>Paiement :</strong>
+
+        {% if intervention.paymentStatus == 'paid' %}
+            ✔ Réglé
+
+            {% if intervention.paidAt %}
+                le {{ intervention.paidAt|date('d/m/Y') }}
+            {% endif %}
+
+        {% elseif intervention.paymentStatus == 'pending' %}
+            ⏳ En attente de règlement
+
+        {% else %}
+            Non défini
+        {% endif %}
+    </p>
+</div>
+{% set beforePhotos = intervention.files|filter(file => file.fileType == 'photo_before') %}
+{% set afterPhotos = intervention.files|filter(file => file.fileType == 'photo_after') %}
+
+{% if beforePhotos|length > 0 or afterPhotos|length > 0 %}
+    <div class="box report-section">
+        <div class="title">Photos avant / après</div>
+
+        <table class="photos-table">
+            <tr>
+                <td>
+                    <strong>Avant</strong><br><br>
+
+                    {% for file in beforePhotos %}
+                        <img src="uploads/interventions/{{ file.fileName }}" class="report-photo">
+
+                        <br>
+                        <small>{{ file.title }}</small>
+                    {% else %}
+                        Aucune photo avant
+                    {% endfor %}
+                </td>
+
+                <td>
+                    <strong>Après</strong><br><br>
+
+                    {% for file in afterPhotos %}
+                        <img src="uploads/interventions/{{ file.fileName }}" class="report-photo">
+                        <br>
+                        <small>{{ file.title }}</small>
+                    {% else %}
+                        Aucune photo après
+                    {% endfor %}
+                </td>
+            </tr>
+        </table>
+    </div>
+{% endif %}
+
+<div class="box report-section">
+    <div class="title">Conclusion</div>
+    <p>Intervention réalisée par RH Digital Studio.</p>
+</div>
+
+<div class="report-signature">
+
+    <table class="signature-table">
+        <tr>
+            <td>
+                Signature client
+            </td>
+
+            <td>
+                Signature RH Digital Studio
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+<div class="footer">
+    RH Digital Studio — Dépannage informatique & création de sites web — Gaillon et alentours
+</div>
+
+</body>
+</html>

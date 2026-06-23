@@ -1,0 +1,195 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact | RH Digital Studio{% endblock %}
+
+{% block body %}
+
+<main class="contact-page">
+
+  <section class="contact-hero">
+    <div class="container">
+      <span class="section-label">Contact</span>
+
+      <h1>Parlons de votre projet.</h1>
+
+      <p>
+        Dépannage informatique, création de site web, maintenance ou accompagnement :
+        décrivez votre besoin et je vous recontacte rapidement.
+      </p>
+    </div>
+  </section>
+
+  <section class="contact-section">
+    <div class="container contact-grid">
+
+      <aside class="contact-info-card">
+
+        <span class="section-label">RH Digital Studio</span>
+
+        <h2>Un contact simple, rapide et humain.</h2>
+
+        <p>
+          Basé à Gaillon, j’interviens localement pour le dépannage informatique
+          et j’accompagne les professionnels dans la création de leur présence digitale.
+        </p>
+
+        <div class="contact-info-list">
+
+          <a href="tel:+33642887016" class="contact-info-item">
+            <span><i class="fa-solid fa-phone"></i></span>
+            <div>
+              <strong>Téléphone</strong>
+              <small>06 42 88 70 16</small>
+            </div>
+          </a>
+
+          <a href="mailto:contact@rhdigitalstudio.fr" class="contact-info-item">
+            <span><i class="fa-solid fa-envelope"></i></span>
+            <div>
+              <strong>Email</strong>
+              <small>contact@rhdigitalstudio.fr</small>
+            </div>
+          </a>
+
+          <div class="contact-info-item">
+            <span><i class="fa-solid fa-location-dot"></i></span>
+            <div>
+              <strong>Secteur</strong>
+              <small>Gaillon et alentours</small>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="contact-highlight">
+          <i class="fa-solid fa-shield-halved"></i>
+          <p>
+            Vos informations sont utilisées uniquement pour répondre à votre demande.
+          </p>
+        </div>
+
+      </aside>
+
+      <form class="contact-form-card" method="post" action="{{ path('app_contact') }}">
+        <input type="hidden" name="_token" value="{{ csrf_token('contact_form') }}">
+
+        <div class="hp-field" aria-hidden="true">
+          <label for="website">Site web</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="form-header">
+          <span class="section-label">Demande de contact</span>
+          <h2>Expliquez-moi votre besoin</h2>
+          <p>Plus votre demande est précise, plus la réponse sera adaptée.</p>
+        </div>
+
+        <div class="form-grid">
+
+          <div class="form-group">
+            <label for="name">Nom / Prénom</label>
+            <input type="text" id="name" name="name" placeholder="Votre nom" required>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Téléphone</label>
+            <input type="tel" id="phone" name="phone" placeholder="06 00 00 00 00">
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="votre@email.fr" required>
+          </div>
+
+          <div class="form-group">
+            <label for="client_type">Vous êtes</label>
+            <select id="client_type" name="client_type" required>
+              <option value="">Choisir</option>
+              <option value="Particulier">Particulier</option>
+              <option value="Professionnel">Professionnel</option>
+              <option value="Association">Association</option>
+            </select>
+          </div>
+
+        </div>
+
+        <div class="form-group">
+          <label>Votre besoin</label>
+
+          <div class="choice-grid">
+
+            <label class="choice-card">
+              <input type="radio" name="service" value="Dépannage informatique" required>
+              <span><i class="fa-solid fa-screwdriver-wrench"></i></span>
+              <strong>Dépannage informatique</strong>
+              <small>PC lent, virus, Windows, imprimante, box…</small>
+            </label>
+
+            <label class="choice-card">
+              <input type="radio" name="service" value="Création de site web">
+              <span><i class="fa-solid fa-laptop-code"></i></span>
+              <strong>Création de site web</strong>
+              <small>Site vitrine, identité, visibilité locale…</small>
+            </label>
+
+            <label class="choice-card">
+              <input type="radio" name="service" value="Maintenance">
+              <span><i class="fa-solid fa-shield-halved"></i></span>
+              <strong>Maintenance</strong>
+              <small>Mises à jour, suivi, corrections…</small>
+            </label>
+
+          </div>
+        </div>
+
+        <div class="form-grid">
+
+          <div class="form-group">
+            <label for="budget">Budget estimé</label>
+            <select id="budget" name="budget" required>
+              <option value="">Choisir</option>
+              <option value="Moins de 100 €">Moins de 100 €</option>
+              <option value="100 € à 300 €">100 € à 300 €</option>
+              <option value="700 € à 1200 €">700 € à 1200 €</option>
+              <option value="Plus de 1200 €">Plus de 1200 €</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="urgency">Délai souhaité</label>
+            <select id="urgency" name="urgency" required>
+              <option value="">Choisir</option>
+              <option value="Urgent">Urgent</option>
+              <option value="Cette semaine">Cette semaine</option>
+              <option value="Ce mois-ci">Ce mois-ci</option>
+              <option value="Pas pressé">Pas pressé</option>
+            </select>
+          </div>
+
+        </div>
+
+        <div class="form-group">
+          <label for="message">Votre message</label>
+          <textarea id="message" name="message" rows="7" placeholder="Décrivez votre besoin, votre problème ou votre projet..." required></textarea>
+        </div>
+
+        <label class="rgpd-check">
+          <input type="checkbox" name="rgpd" required>
+          <span>
+            J’accepte que mes informations soient utilisées uniquement pour répondre à ma demande.
+          </span>
+        </label>
+
+        <button type="submit" class="btn btn-primary contact-submit">
+          Envoyer ma demande
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+
+      </form>
+
+    </div>
+  </section>
+
+</main>
+
+{% endblock %}

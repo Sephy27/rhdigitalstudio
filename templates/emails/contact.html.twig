@@ -1,0 +1,154 @@
+{# templates/emails/contact_request_internal.html.twig #}
+<!doctype html>
+<html lang="fr">
+  <body style="margin:0;padding:0;background:#03070d;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;">
+    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background:#03070d;">
+      <tr>
+        <td align="center" style="padding:28px;">
+
+          <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width:680px;background:#07111d;border-radius:18px;overflow:hidden;border:1px solid rgba(0,140,255,.22);box-shadow:0 20px 60px rgba(0,0,0,.45);">
+
+            <tr>
+              <td style="padding:26px 28px;background:linear-gradient(135deg,#02060c,#071b30);border-bottom:1px solid rgba(255,255,255,.08);">
+                <p style="margin:0;color:#008cff;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;">
+                  RH Digital Studio
+                </p>
+                <h1 style="margin:8px 0 0;color:#ffffff;font-size:24px;line-height:1.25;">
+                  Nouvelle demande reçue depuis le site
+                </h1>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="padding:28px;">
+
+                <p style="margin:0 0 12px;color:#ffffff;font-size:16px;font-weight:700;">
+                  Bonjour Romain,
+                </p>
+
+                <p style="margin:0 0 22px;color:#aab6c7;font-size:14px;line-height:1.65;">
+                  Une nouvelle demande vient d’être envoyée depuis le formulaire de contact de
+                  <strong style="color:#ffffff;">RH Digital Studio</strong>.
+                </p>
+
+                <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:separate;border-spacing:0 8px;margin-top:8px;">
+
+                  <tr>
+                    <td style="padding:10px 12px;color:#718097;font-size:13px;width:170px;background:#0b1624;border-radius:10px 0 0 10px;">
+                      Nom / Prénom
+                    </td>
+                    <td style="padding:10px 12px;color:#ffffff;font-size:13px;background:#0b1624;border-radius:0 10px 10px 0;">
+                      {{ contact.name|default('—') }}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td style="padding:10px 12px;color:#718097;font-size:13px;background:#0b1624;border-radius:10px 0 0 10px;">
+                      Email
+                    </td>
+                    <td style="padding:10px 12px;color:#ffffff;font-size:13px;background:#0b1624;border-radius:0 10px 10px 0;">
+                      <a href="mailto:{{ contact.email }}" style="color:#20c6ff;text-decoration:none;">
+                        {{ contact.email|default('—') }}
+                      </a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td style="padding:10px 12px;color:#718097;font-size:13px;background:#0b1624;border-radius:10px 0 0 10px;">
+                      Téléphone
+                    </td>
+                    <td style="padding:10px 12px;color:#ffffff;font-size:13px;background:#0b1624;border-radius:0 10px 10px 0;">
+                      {% if contact.phone is defined and contact.phone %}
+                        <a href="tel:{{ contact.phone }}" style="color:#20c6ff;text-decoration:none;">
+                          {{ contact.phone }}
+                        </a>
+                      {% else %}
+                        —
+                      {% endif %}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td style="padding:10px 12px;color:#718097;font-size:13px;background:#0b1624;border-radius:10px 0 0 10px;">
+                      Type de client
+                    </td>
+                    <td style="padding:10px 12px;color:#ffffff;font-size:13px;background:#0b1624;border-radius:0 10px 10px 0;">
+                      {{ contact.client_type|default('—') }}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td style="padding:10px 12px;color:#718097;font-size:13px;background:#0b1624;border-radius:10px 0 0 10px;">
+                      Service demandé
+                    </td>
+                    <td style="padding:10px 12px;color:#ffffff;font-size:13px;background:#0b1624;border-radius:0 10px 10px 0;">
+                      {{ contact.service|default('—') }}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td style="padding:10px 12px;color:#718097;font-size:13px;background:#0b1624;border-radius:10px 0 0 10px;">
+                      Budget estimé
+                    </td>
+                    <td style="padding:10px 12px;color:#ffffff;font-size:13px;background:#0b1624;border-radius:0 10px 10px 0;">
+                      {{ contact.budget|default('Non défini') }}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td style="padding:10px 12px;color:#718097;font-size:13px;background:#0b1624;border-radius:10px 0 0 10px;">
+                      Délai souhaité
+                    </td>
+                    <td style="padding:10px 12px;color:#ffffff;font-size:13px;background:#0b1624;border-radius:0 10px 10px 0;">
+                      {{ contact.urgency|default('—') }}
+                    </td>
+                  </tr>
+
+                </table>
+
+                <div style="margin-top:22px;padding:18px;background:#061b2f;border-left:4px solid #008cff;border-radius:14px;">
+                  <p style="margin:0 0 8px;color:#20c6ff;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;">
+                    Message
+                  </p>
+
+                  <p style="margin:0;color:#ffffff;font-size:14px;line-height:1.75;white-space:pre-line;">
+                    {{ contact.message|default('—') }}
+                  </p>
+                </div>
+
+                <div style="margin-top:24px;">
+                  <a href="mailto:{{ contact.email }}" style="display:inline-block;background:linear-gradient(135deg,#0aa2ff,#0064dc);color:#ffffff;text-decoration:none;padding:12px 18px;border-radius:999px;font-weight:700;font-size:14px;box-shadow:0 10px 28px rgba(0,140,255,.28);">
+                    Répondre à {{ contact.name|default('ce contact') }}
+                  </a>
+                </div>
+
+                <p style="margin:18px 0 0;color:#718097;font-size:11px;">
+                  Reçu le {{ contact.createdAt is defined and contact.createdAt ? contact.createdAt|date('d/m/Y à H:i') : '—' }}.
+                </p>
+
+              </td>
+            </tr>
+
+            <tr>
+              <td style="background:#02060c;color:#aab6c7;padding:18px 28px;font-size:11px;line-height:1.7;border-top:1px solid rgba(255,255,255,.08);">
+                <strong style="color:#ffffff;">RH Digital Studio</strong><br>
+                Création de sites web & assistance informatique<br>
+                Gaillon et alentours<br>
+                Tél.
+                <a href="tel:+33642887016" style="color:#20c6ff;text-decoration:none;">06 42 88 70 16</a>
+                ·
+                <a href="mailto:contact@rhdigitalstudio.fr" style="color:#20c6ff;text-decoration:none;">contact@rhdigitalstudio.fr</a>
+                <br>
+                <span style="opacity:.75;">
+                  Cet email est destiné à RH Digital Studio. Les informations reçues doivent être utilisées uniquement pour répondre à la demande.
+                </span>
+              </td>
+            </tr>
+
+          </table>
+
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

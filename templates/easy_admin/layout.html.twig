@@ -1,0 +1,12 @@
+{# templates/easy_admin/layout.html.twig #}
+{% extends '@EasyAdmin/layout.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {# JS public du site (zoom galerie, etc.) #}
+    {{ importmap('app') }}
+
+    {# JS du dashboard admin (Chart.js, etc.) #}
+    {{ importmap('admin-dashboard') }}
+{% endblock %}

@@ -1,0 +1,15 @@
+Nouvelle demande RH Digital Studio
+
+Nom / Prénom : {{ contact.name|default('—') }}
+Email : {{ contact.email|default('—') }}
+Téléphone : {{ contact.phone|default('—') }}
+Type de client : {{ contact.client_type|default('—') }}
+Service demandé : {{ contact.service|default('—') }}
+Budget estimé : {{ contact.budget|default('Non défini') }}
+Délai souhaité : {{ contact.urgency|default('—') }}
+
+Message :
+{{ contact.message|default('—') }}
+
+Reçu le {{ contact.createdAt ? contact.createdAt|date('d/m/Y à H:i') : '—' }}.
+RH Digital Studio — 06 42 88 70 16 — contact@rhdigitalstudio.fr

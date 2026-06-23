@@ -1,0 +1,13 @@
+{# templates/admin/fields/media_preview.html.twig #}
+{% set url = asset('images/uploads/' ~ field.value) %}
+
+{% if entity.instance is defined and entity.instance.isVideo() %}
+    <video src="{{ url }}"
+           style="max-width: 220px; max-height: 160px; border-radius: 8px;"
+           controls
+           preload="metadata"></video>
+{% else %}
+    <img src="{{ url }}"
+         alt="{{ entity.instance.name }}"
+         style="max-width: 220px; max-height: 160px; border-radius: 8px; object-fit: cover;">
+{% endif %}

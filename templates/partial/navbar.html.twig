@@ -1,0 +1,74 @@
+<header class="site-header">
+  <div class="container">
+
+    <nav class="navbar navbar-expand-lg">
+
+      <!-- Logo -->
+      <a class="navbar-brand brand d-flex align-items-center" href="{{ path('app_home') }}">
+
+        <img
+          class="brand-logo"
+          src="{{ asset('images/logohead1.png') }}"
+          alt="Logo RH Digital Studio"
+        >
+
+        <div class="brand-text ms-3">
+          <span class="brand-title">RH DIGITAL STUDIO</span>
+          <span class="brand-subtitle">
+            VOTRE PRÉSENCE DIGITALE, SIMPLEMENT.
+          </span>
+        </div>
+
+      </a>
+
+      <!-- Burger -->
+      <button
+        class="navbar-toggler custom-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#mainNav"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Menu -->
+      <div class="collapse navbar-collapse" id="mainNav">
+
+        <ul class="navbar-nav mx-auto">
+
+          <li class="nav-item">
+            <a href="{{ path('app_home') }}" class="nav-link {{ app.request.attributes.get('_route') == 'app_home' ? 'active' : '' }}">Accueil</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ path('app_services') }}" class="nav-link {{ app.request.attributes.get('_route') == 'app_services' ? 'active' : '' }}">Services</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ path('app_realisation') }}" class="nav-link {{ app.request.attributes.get('_route') == 'app_realisation' ? 'active' : '' }}">Réalisations</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ path('app_apropos') }}" class="nav-link {{ app.request.attributes.get('_route') == 'app_apropos' ? 'active' : '' }}">À propos</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ path('app_contact') }}" class="nav-link {{ app.request.attributes.get('_route') == 'app_contact' ? 'active' : '' }}">Contact</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ path('admin') }}" class="nav-link {{ app.request.attributes.get('_route') == 'app_admin' ? 'active' : '' }}">Admin</a>
+          </li>
+
+        </ul>
+
+        <a href="{{ path('app_contact') }}" class="btn btn-primary">
+          Devis gratuit
+        </a>
+
+      </div>
+
+    </nav>
+
+  </div>
+</header>

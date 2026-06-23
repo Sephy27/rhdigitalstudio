@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="fr">
+<body style="margin:0;padding:0;background:#f5f7fb;font-family:Arial,sans-serif;">
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" style="padding:24px;">
+
+<table role="presentation" width="650" cellpadding="0" cellspacing="0" style="background:#fff;border:1px solid #e5e7eb;">
+
+<tr>
+    <td>
+        <img src="{{ absolute_url(asset('images/mail-banner.png')) }}"
+             alt="RH Digital Studio"
+             style="width:100%;display:block;">
+    </td>
+</tr>
+
+<tr>
+    <td style="background:#f59e0b;color:white;padding:18px 28px;font-size:22px;font-weight:bold;">
+        Relance de paiement
+    </td>
+</tr>
+
+<tr>
+    <td style="padding:30px;line-height:1.7;">
+
+        <p>Bonjour {{ intervention.client.firstName }},</p>
+
+        <p>
+            Sauf erreur de notre part, la facture
+            <strong>{{ intervention.invoiceNumber }}</strong>
+            semble toujours en attente de règlement.
+        </p>
+
+        <table width="100%" style="border-collapse:collapse;margin:20px 0;">
+            <tr>
+                <td style="padding:10px;border:1px solid #ddd;background:#f8fafc;">
+                    Montant dû
+                </td>
+
+                <td style="padding:10px;border:1px solid #ddd;">
+                    {{ intervention.price|number_format(2, ',', ' ') }} €
+                </td>
+            </tr>
+        </table>
+
+        <p>
+            Si le paiement a déjà été effectué, merci de ne pas tenir compte de ce message.
+        </p>
+
+        <p>
+            Cordialement,<br>
+            <strong>RH Digital Studio</strong>
+        </p>
+
+    </td>
+</tr>
+
+</table>
+
+</td>
+</tr>
+</table>
+
+</body>
+</html>

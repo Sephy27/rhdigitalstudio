@@ -1,0 +1,277 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RH Digital Studio | Création de sites web & dépannage informatique à Gaillon{% endblock %}
+
+{% block body %}
+<main id="accueil">
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-content">
+            <div class="kicker">Informatique & solutions digitales</div>
+            <h1>
+              Votre présence digitale,
+              <span class="text-blue">simplement.</span>
+            </h1>
+            <p class="hero-subtitle">
+              Dépannage informatique à domicile et création de sites web
+              professionnels pour particuliers et entreprises.
+            </p>
+
+            <div class="hero-actions">
+              <a href="{{ path('app_services') }}" class="btn btn-primary"
+                >Découvrir nos services</a
+              >
+              <a href="{{ path('app_contact') }}" class="btn btn-outline">Nous contacter</a>
+            </div>
+
+            <div class="hero-benefits">
+
+              <div class="benefit">
+                <div class="benefit-icon">
+                  <i class="bi bi-lightning-charge-fill"></i>
+                </div>
+
+                <div>
+                  <strong>Intervention rapide</strong>
+                  <span>À domicile</span>
+                </div>
+              </div>
+
+              <div class="benefit">
+                <div class="benefit-icon">
+                  <i class="bi bi-cpu-fill"></i>
+                </div>
+
+                <div>
+                  <strong>Solutions sur-mesure</strong>
+                  <span>Adaptées à vos besoins</span>
+                </div>
+              </div>
+
+              <div class="benefit">
+                <div class="benefit-icon">
+                  <i class="bi bi-patch-check-fill"></i>
+                </div>
+
+                <div>
+                  <strong>Satisfaction garantie</strong>
+                  <span>Un service de qualité</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <img
+                src="{{ asset('images/laptop1.png') }}"
+                alt="RH Digital Studio"
+                class="hero-laptop">
+          </div>
+        </div>
+        <div class="hero-bottom-line"></div>
+      </section>
+
+      <section id="services" class="services-section">
+        <div class="container">
+          <div class="section-center">
+            <div class="section-label">Nos services</div>
+            <h2>
+              Des solutions complètes pour répondre à
+              <span class="text-blue">vos besoins</span>
+            </h2>
+          </div>
+
+          <div class="services-grid">
+            <article class="service-card">
+              <div class="service-icon">&lt;/&gt;</div>
+              <div class="service-content">
+                <h3>Dépannage Informatique</h3>
+                <p>
+                  Assistance et réparation à domicile pour tous vos problèmes
+                  informatiques.
+                </p>
+                <ul class="check-list">
+                  <li>Suppression de virus</li>
+                  <li class="no-break">Optimisation des performances</li>
+                  <li>Installation & configuration</li>
+                  <li>Réparation matériel & logiciel</li>
+                </ul>
+                <a class="card-link" href="{{ path('app_services') }}">En savoir plus →</a>
+              </div>
+            </article>
+
+            <article class="service-card">
+              <div class="service-icon">🛠</div>
+              <div class="service-content">
+                <h3>Création de Sites Web</h3>
+                <p>
+                  Sites web modernes, rapides et optimisés pour tous les
+                  supports.
+                </p>
+                <ul class="check-list">
+                  <li>Sites vitrines professionnels</li>
+                  <li>Design responsive & moderne</li>
+                  <li>Référencement naturel SEO</li>
+                  <li>Maintenance & accompagnement</li>
+                </ul>
+                <a class="card-link" href="{{ path('app_services') }}">En savoir plus →</a>
+              </div>
+            </article>
+          </div>
+
+          <div class="stats">
+
+            <div class="stat">
+              <div class="stat-icon">
+                <i class="fa-solid fa-house"></i>
+              </div>
+
+              <div>
+                <strong>À domicile</strong>
+                <span>Intervention rapide</span>
+              </div>
+            </div>
+
+            <div class="stat">
+              <div class="stat-icon">
+                <i class="fa-solid fa-laptop-code"></i>
+              </div>
+
+              <div>
+                <strong>Sites modernes</strong>
+                <span>Design responsive</span>
+              </div>
+            </div>
+
+            <div class="stat">
+              <div class="stat-icon">
+                <i class="fa-solid fa-headset"></i>
+              </div>
+
+              <div>
+                <strong>Support humain</strong>
+                <span>Accompagnement personnalisé</span>
+              </div>
+            </div>
+
+            <div class="stat">
+              <div class="stat-icon">
+                <i class="fa-solid fa-shield-halved"></i>
+              </div>
+
+              <div>
+                <strong>Service local</strong>
+                <span>Solutions adaptées</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section id="apropos">
+        <div class="container">
+          <div class="about-grid">
+            <div>
+              <div class="section-label">À propos</div>
+              <h2>
+                Un partenaire de <span class="text-blue">confiance</span> pour
+                vos projets digitaux
+              </h2>
+              <p class="section-text">
+                Passionné par l'informatique et le web, j'accompagne
+                particuliers et professionnels dans leurs projets avec des
+                solutions fiables, performantes et adaptées à leurs besoins.
+              </p>
+              <div class="about-actions">
+                <a href="{{ path('app_apropos') }}" class="btn btn-outline"
+                  >En savoir plus sur moi</a
+                >
+              </div>
+            </div>
+
+            <div class="about-image-wrap">
+              <div class="about-image">
+                <img
+                  src="{{ asset('images/dev.png') }}"
+                  alt="RH Digital Studio">
+              </div>
+              <div class="location-card">
+                <div class="pin">
+                    <i class="fa-solid fa-house-signal"></i>
+                </div>
+                <div>
+                  <strong>Intervention à domicile</strong>
+                  <span>Gaillon et alentours</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="separator"></div>
+        </div>
+      </section>
+
+      <section id="realisations">
+        <div class="container">
+          <div class="section-center">
+            <div class="section-label">Avis clients</div>
+            <h2>Ils m’ont fait confiance</h2>
+          </div>
+
+          <div class="testimonials-grid">
+            <article class="testimonial">
+              <div class="quote">“</div>
+              <p>
+                Intervention rapide et efficace ! Mon PC fonctionne comme neuf.
+                Je recommande vivement RH Digital Studio.
+              </p>
+              <div class="person">
+                <div class="avatar">👤</div>
+                <div>
+                  <strong>Veronique D.</strong>
+                  <span>Particulier</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="testimonial">
+              <div class="quote">“</div>
+              <p>
+                Création de mon site web professionnel au top. À l'écoute,
+                réactif et très professionnel. Merci encore !
+              </p>
+              <div class="person">
+                <div class="avatar">👤</div>
+                <div>
+                  <strong>Marc T.</strong>
+                  <span>Artisan</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="testimonial">
+              <div class="quote">“</div>
+              <p>
+                Un service de qualité, des conseils précieux et une grande
+                disponibilité. Je referai appel sans hésiter.
+              </p>
+              <div class="person">
+                <div class="avatar">👤</div>
+                <div>
+                  <strong>Marine M.</strong>
+                  <span>Commerçante</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="dots" aria-hidden="true">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
+      </section>
+    </main>
+{% endblock %}

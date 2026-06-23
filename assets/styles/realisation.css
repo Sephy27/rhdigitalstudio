@@ -1,0 +1,218 @@
+/* ================= PORTFOLIO PAGE ================= */
+
+.portfolio-hero {
+    padding: 95px 0 60px;
+    text-align: center;
+}
+
+.portfolio-hero .container {
+    max-width: 920px;
+}
+
+.portfolio-hero h1 {
+    max-width: none;
+    margin: 18px auto;
+    font-size: clamp(2.5rem, 5vw, 4.6rem);
+    line-height: 1.02;
+    letter-spacing: -0.06em;
+}
+
+.portfolio-hero p {
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+.portfolio-section {
+    padding: 40px 0 80px;
+}
+
+.portfolio-grid {
+    display: grid;
+    gap: 32px;
+}
+
+.portfolio-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 34px;
+    align-items: center;
+
+    padding: 34px;
+
+    border-radius: 24px;
+    border: 1px solid rgba(255,255,255,.09);
+
+    background: linear-gradient(
+        180deg,
+        rgba(255,255,255,.055),
+        rgba(255,255,255,.025)
+    );
+
+    box-shadow: 0 28px 80px rgba(0,0,0,.28);
+
+    transition:
+        transform .28s ease,
+        border-color .28s ease,
+        box-shadow .28s ease;
+}
+
+.portfolio-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(0,140,255,.32);
+    box-shadow:
+        0 32px 90px rgba(0,0,0,.34),
+        0 0 34px rgba(0,140,255,.09);
+}
+
+.portfolio-image {
+    min-height: 330px;
+    border-radius: 18px;
+    overflow: hidden;
+
+    background:
+        radial-gradient(circle at 50% 40%, rgba(0,140,255,.24), transparent 42%),
+        linear-gradient(135deg, #07111d, #02060d);
+
+    border: 1px solid rgba(0,140,255,.18);
+}
+
+.portfolio-image img {
+    width: 100%;
+    height: 100%;
+    min-height: 330px;
+    object-fit: cover;
+    display: block;
+
+    filter:
+        brightness(.88)
+        contrast(1.08)
+        saturate(1.08);
+}
+
+.portfolio-demo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.portfolio-demo div {
+    display: grid;
+    justify-items: center;
+    gap: 18px;
+    color: var(--blue);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+}
+
+.portfolio-demo i {
+    font-size: 4rem;
+    filter: drop-shadow(0 0 22px rgba(0,140,255,.35));
+}
+
+.portfolio-tag {
+    display: inline-flex;
+    margin-bottom: 14px;
+
+    color: var(--blue);
+    font-size: .78rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: .13em;
+}
+
+.portfolio-content h2 {
+    font-size: clamp(1.8rem, 3vw, 2.7rem);
+    margin-bottom: 16px;
+}
+
+.portfolio-content p {
+    color: var(--muted);
+    line-height: 1.8;
+    font-size: 1rem;
+    max-width: 560px;
+}
+
+.portfolio-content ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    margin: 24px 0 28px;
+    padding: 0;
+
+    list-style: none;
+}
+
+.portfolio-content li {
+    padding: 9px 13px;
+    border-radius: 999px;
+
+    color: #dceaff;
+    font-size: .82rem;
+    font-weight: 700;
+
+    background: rgba(0,140,255,.10);
+    border: 1px solid rgba(0,140,255,.20);
+}
+
+.portfolio-cta {
+    padding: 60px 0 110px;
+}
+
+.portfolio-cta-card {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px;
+
+    text-align: center;
+
+    border-radius: 26px;
+    border: 1px solid rgba(0,140,255,.24);
+
+    background:
+        radial-gradient(circle at 50% 0%, rgba(0,140,255,.20), transparent 46%),
+        linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.025));
+
+    box-shadow:
+        0 30px 90px rgba(0,0,0,.32),
+        0 0 35px rgba(0,140,255,.08);
+}
+
+.portfolio-cta-card h2 {
+    margin: 16px auto;
+    max-width: 720px;
+}
+
+.portfolio-cta-card p {
+    max-width: 650px;
+    margin: 0 auto 30px;
+    color: var(--muted);
+    line-height: 1.8;
+}
+
+@media (max-width: 900px) {
+    .portfolio-card {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .portfolio-hero {
+        padding: 70px 0 40px;
+    }
+
+    .portfolio-card {
+        padding: 24px;
+    }
+
+    .portfolio-image,
+    .portfolio-image img {
+        min-height: 240px;
+    }
+
+    .portfolio-cta-card {
+        padding: 32px 24px;
+    }
+}

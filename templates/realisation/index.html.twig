@@ -1,0 +1,124 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réalisations | RH Digital Studio{% endblock %}
+
+{% block body %}
+
+<main class="portfolio-page">
+
+  <section class="portfolio-hero">
+    <div class="container">
+      <span class="section-label">Réalisations</span>
+      <h1>Des projets web pensés pour être clairs, modernes et efficaces.</h1>
+      <p>
+        Voici quelques exemples de projets réalisés ou de démonstrations conçues
+        pour présenter mon savoir-faire en création de sites web.
+      </p>
+    </div>
+  </section>
+
+  <section class="portfolio-section">
+    <div class="container">
+
+      <div class="portfolio-grid">
+
+        <article class="portfolio-card">
+          <div class="portfolio-image">
+            <img src="{{ asset('images/marcolaiguizeure.png') }}" alt="Site BSM L'Aiguiz'Eure">
+          </div>
+
+          <div class="portfolio-content">
+            <span class="portfolio-tag">Site vitrine</span>
+            <h2>BSM L’Aiguiz’Eure</h2>
+            <p>
+              Site professionnel pour présenter une activité locale avec galerie,
+              formulaire de contact et administration personnalisée.
+            </p>
+
+            <ul>
+              <li>Symfony</li>
+              <li>Interface admin</li>
+              <li>Galerie dynamique</li>
+              <li>Responsive design</li>
+            </ul>
+
+            <a href="https://bsm-laiguizeure.fr" class="btn btn-outline">Voir le projet</a>
+          </div>
+        </article>
+
+        <article class="portfolio-card">
+          <div class="portfolio-image">
+            <img src="{{ asset('images/comealive.png') }}" alt="Site Come Alive Fitness">
+          </div>
+
+          <div class="portfolio-content">
+            <span class="portfolio-tag">Sport & coaching</span>
+            <h2>Come Alive Fitness</h2>
+            <p>
+              Refonte visuelle d’un site fitness avec présentation des activités,
+              planning dynamique et design moderne.
+            </p>
+
+            <ul>
+              <li>Design responsive</li>
+              <li>Planning hebdomadaire</li>
+              <li>UI premium</li>
+              <li>Optimisation mobile</li>
+            </ul>
+
+            <a href="https://comealivefitness.fr/" class="btn btn-outline">Voir le projet</a>
+          </div>
+        </article>
+
+        <article class="portfolio-card">
+          <div class="portfolio-image portfolio-demo">
+            <div>
+              <i class="fa-solid fa-utensils"></i>
+              <span>Démo restaurant</span>
+            </div>
+          </div>
+
+          <div class="portfolio-content">
+            <span class="portfolio-tag">Démonstration</span>
+            <h2>Restaurant local</h2>
+            <p>
+              Exemple de site vitrine pour restaurant avec carte, présentation,
+              horaires, formulaire et optimisation locale.
+            </p>
+
+            <ul>
+              <li>Site vitrine</li>
+              <li>Carte en ligne</li>
+              <li>SEO local</li>
+              <li>Mobile first</li>
+            </ul>
+
+            <a href="#" class="btn btn-outline disabled">Bientot Disponible</a>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="portfolio-cta">
+    <div class="container">
+      <div class="portfolio-cta-card">
+        <span class="section-label">Votre projet</span>
+        <h2>Vous souhaitez un site professionnel pour votre activité ?</h2>
+        <p>
+          Je peux vous accompagner dans la création d’un site clair, moderne,
+          responsive et adapté à votre activité locale.
+        </p>
+
+        <a href="{{ path('app_contact') }}" class="btn btn-primary">
+          Demander un devis gratuit
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{
+  "devDependencies": {
+    "@hotwired/stimulus": "^3.0.0",
+    "@hotwired/turbo": "^7.1.0 || ^8.0",
+    "@symfony/stimulus-bridge": "^3.2.0 || ^4.0.0",
+    "@symfony/ux-chartjs": "file:vendor/symfony/ux-chartjs/assets",
+    "@symfony/ux-turbo": "file:vendor/symfony/ux-turbo/assets",
+    "bootstrap": "^5.3.8",
+    "chart.js": "^3.4.1 || ^4.0"
+  },
+  "dependencies": {
+    "@fancyapps/ui": "^6.0.34",
+    "bootstrap-icons": "^1.13.1"
+  }
+  
+}

@@ -1,0 +1,12 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title 'galerie : ' ~ galerie.name %}
+
+{% block body %}
+
+    <h1>{{ galerie.name }}</h1>
+
+    {{ form(addForm) }}
+    <button class="btn btn-lg bg-success text-light mb-5" type="submit">supprimer</button>
+
+{% endblock %}

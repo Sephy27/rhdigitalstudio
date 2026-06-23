@@ -1,0 +1,254 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Services | RH Digital Studio{% endblock %}
+
+{% block body %}
+
+<main class="services-page">
+
+  <section class="services-hero">
+    <div class="container">
+      <span class="section-label">Services</span>
+      <h1>Informatique, sites web et accompagnement digital à Gaillon.</h1>
+      <p>
+        RH Digital Studio accompagne les particuliers, indépendants, artisans et petites entreprises
+        avec des prestations simples, claires et adaptées aux besoins réels.
+      </p>
+
+      <div class="hero-actions">
+        <a href="{{ path('app_contact') }}" class="btn btn-primary">Demander un devis</a>
+        <a href="#tarifs" class="btn btn-secondary">Voir les tarifs</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="services-detail">
+    <div class="container services-detail-grid">
+
+      <article class="service-detail-card">
+        <div class="service-detail-icon">
+          <i class="fa-solid fa-screwdriver-wrench"></i>
+        </div>
+
+        <div>
+          <span class="service-tag">Particuliers & petits pros</span>
+          <h2>Dépannage informatique</h2>
+          <p>
+            Intervention à domicile pour vous aider avec vos problèmes informatiques du quotidien :
+            ordinateur lent, virus, installation Windows, imprimante, box internet, sauvegarde ou transfert de données.
+          </p>
+
+          <ul>
+            <li>Diagnostic complet de votre ordinateur</li>
+            <li>Nettoyage système et suppression de virus</li>
+            <li>Optimisation des performances</li>
+            <li>Réinstallation ou configuration Windows</li>
+            <li>Sauvegarde et transfert de données</li>
+            <li>Installation imprimante, box, logiciels et périphériques</li>
+          </ul>
+
+          <a href="{{ path('app_contact') }}" class="btn btn-primary">Demander un dépannage</a>
+        </div>
+      </article>
+
+      <article class="service-detail-card featured">
+        <div class="service-detail-icon">
+          <i class="fa-solid fa-laptop-code"></i>
+        </div>
+
+        <div>
+          <span class="service-tag">Artisans, commerçants, indépendants</span>
+          <h2>Création de sites web</h2>
+          <p>
+            Création de sites vitrines modernes, rapides et adaptés aux mobiles pour présenter
+            votre activité, rassurer vos clients et améliorer votre visibilité locale.
+          </p>
+
+          <ul>
+            <li>Site vitrine jusqu’à 4 pages</li>
+            <li>Design moderne et responsive</li>
+            <li>Formulaire de contact</li>
+            <li>SEO local de base</li>
+            <li>Nom de domaine et hébergement 1 an inclus selon l’offre</li>
+            <li>Possibilité d’espace administrateur personnalisé</li>
+          </ul>
+
+          <a href="{{ path('app_contact') }}" class="btn btn-primary">Créer mon site</a>
+        </div>
+      </article>
+
+      <article class="service-detail-card">
+        <div class="service-detail-icon">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+
+        <div>
+          <span class="service-tag">Suivi & tranquillité</span>
+          <h2>Maintenance & accompagnement</h2>
+          <p>
+            Gardez un site propre, sécurisé et à jour avec un accompagnement mensuel simple.
+            Idéal pour éviter les oublis techniques et rester concentré sur votre activité.
+          </p>
+
+          <ul>
+            <li>Mises à jour mineures</li>
+            <li>Petites modifications de contenu</li>
+            <li>Sauvegardes régulières</li>
+            <li>Surveillance technique</li>
+            <li>Assistance et conseils</li>
+            <li>Accompagnement après la mise en ligne</li>
+          </ul>
+
+          <a href="{{ path('app_contact') }}" class="btn btn-primary">Voir la maintenance</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="services-zone">
+    <div class="container">
+      <div class="zone-card">
+        <span class="section-label">Zone d’intervention</span>
+        <h2>Un service local autour de Gaillon.</h2>
+        <p>
+          RH Digital Studio intervient principalement à Gaillon et dans les communes alentours :
+          Les Andelys, Vernon, Aubevoye, Val-de-Reuil, Pont-de-l’Arche et les environs.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="services-pricing" id="tarifs">
+    <div class="container">
+      <div class="section-center">
+        <span class="section-label">Tarifs</span>
+        <h2>Des offres claires, sans mauvaise surprise.</h2>
+        <p>
+          Chaque besoin est différent. Les prix ci-dessous sont donnés à titre indicatif.
+          Un devis personnalisé est proposé avant toute prestation importante.
+        </p>
+      </div>
+
+    <div class="pricing-grid">
+
+        <article class="pricing-card">
+            <h3>Diagnostic à domicile</h3>
+            <p>Pour identifier l’origine du problème.</p>
+
+            <strong class="price">40 €</strong>
+
+            <ul>
+                <li>Déplacement inclus*</li>
+                <li>Analyse du matériel et du système</li>
+                <li>Conseils personnalisés</li>
+                <li>Déduit si intervention réalisée</li>
+            </ul>
+        </article>
+
+        <article class="pricing-card">
+            <h3>Dépannage informatique</h3>
+            <p>Pour résoudre les problèmes courants.</p>
+
+            <strong class="price">60 €</strong>
+
+            <ul>
+                <li>Diagnostic inclus</li>
+                <li>Nettoyage et optimisation</li>
+                <li>Suppression de virus</li>
+                <li>Installation logiciels / périphériques</li>
+            </ul>
+        </article>
+
+        <article class="pricing-card highlighted">
+            <h3>Site vitrine professionnel</h3>
+            <p>Idéal pour développer votre présence en ligne.</p>
+
+            <strong class="price">À partir de 790 €</strong>
+
+            <ul>
+                <li>Structure adaptée à votre activité</li>
+                <li>Design responsive</li>
+                <li>Formulaire de contact</li>
+                <li>SEO local de base</li>
+            </ul>
+        </article>
+
+        <article class="pricing-card">
+            <h3>Site administrable</h3>
+            <p>Gérez vos contenus en autonomie.</p>
+
+            <strong class="price">À partir de 1490 €</strong>
+
+            <ul>
+                <li>Espace administrateur</li>
+                <li>Gestion des contenus</li>
+                <li>Galerie et formulaires</li>
+                <li>Accompagnement personnalisé</li>
+            </ul>
+        </article>
+
+        <article class="pricing-card">
+            <h3>Maintenance site</h3>
+            <p>Pour garder votre site sécurisé et à jour.</p>
+
+            <strong class="price">49 €/mois</strong>
+
+            <ul>
+                <li>Mises à jour mineures</li>
+                <li>Sauvegardes régulières</li>
+                <li>Petites modifications</li>
+                <li>Support technique</li>
+            </ul>
+        </article>
+
+    </div>
+
+    <p class="pricing-note">
+        ✓ Devis gratuit<br>
+
+        ✓ Déplacement inclus dans un rayon de 30 km autour de Gaillon,au-delà un supplément pourra être appliqué selon la distance.<br>
+
+        ✓ Diagnostic déduit en cas d'intervention réalisée
+    </p>
+    </div>
+  </section>
+
+  <section class="services-process">
+    <div class="container">
+      <div class="section-center">
+        <span class="section-label">Méthode</span>
+        <h2>Une approche simple et efficace.</h2>
+      </div>
+
+      <div class="process-grid">
+        <div class="process-card">
+          <span>01</span>
+          <h3>Échange</h3>
+          <p>On définit votre besoin, vos attentes et votre budget.</p>
+        </div>
+
+        <div class="process-card">
+          <span>02</span>
+          <h3>Devis</h3>
+          <p>Vous recevez une proposition claire avant le démarrage.</p>
+        </div>
+
+        <div class="process-card">
+          <span>03</span>
+          <h3>Réalisation</h3>
+          <p>La prestation est réalisée avec soin, méthode et transparence.</p>
+        </div>
+
+        <div class="process-card">
+          <span>04</span>
+          <h3>Suivi</h3>
+          <p>Vous bénéficiez de conseils et d’un accompagnement si nécessaire.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+{% endblock %}

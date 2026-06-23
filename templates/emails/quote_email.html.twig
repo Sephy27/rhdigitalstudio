@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="fr">
+<body style="margin:0;padding:0;background:#f5f7fb;font-family:Arial,sans-serif;">
+
+<table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background:#f5f7fb;">
+<tr>
+<td align="center" style="padding:24px;">
+
+<table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width:650px;background:#ffffff;border-radius:14px;overflow:hidden;border:1px solid #e5e7eb;">
+
+    <tr>
+        <td align="center" style="background:#0b1220;padding:0;">
+            <img src="{{ absolute_url(asset('images/mail-banner.png')) }}"
+                 alt="RH Digital Studio"
+                 style="width:100%;max-width:650px;display:block;">
+        </td>
+    </tr>
+
+    <tr>
+        <td style="background:#0a8cff;color:#ffffff;padding:18px 28px;font-size:22px;font-weight:bold;">
+            Votre devis RH Digital Studio
+        </td>
+    </tr>
+
+    <tr>
+        <td style="padding:32px;color:#111827;font-size:15px;line-height:1.7;">
+
+            <p>Bonjour {{ intervention.client.firstName }},</p>
+
+            <p>
+                Suite à votre demande, vous trouverez ci-joint votre devis
+                <strong>{{ intervention.quoteNumber }}</strong>.
+            </p>
+
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:24px 0;border-collapse:collapse;">
+                <tr>
+                    <td style="padding:12px;border:1px solid #dbe3ea;background:#f8fafc;"><strong>Type d’intervention</strong></td>
+                    <td style="padding:12px;border:1px solid #dbe3ea;">{{ intervention.type }}</td>
+                </tr>
+
+                <tr>
+                    <td style="padding:12px;border:1px solid #dbe3ea;background:#f8fafc;"><strong>Montant estimé</strong></td>
+                    <td style="padding:12px;border:1px solid #dbe3ea;font-size:18px;font-weight:bold;color:#0a8cff;">
+                        {{ intervention.price|number_format(2, ',', ' ') }} €
+                    </td>
+                </tr>
+            </table>
+
+            <p>
+                Vous pouvez consulter, télécharger ou imprimer le document joint.
+            </p>
+
+            <p>
+                Pour toute question, vous pouvez simplement répondre à cet email.
+            </p>
+
+            <p>
+                Cordialement,<br>
+                <strong>RH Digital Studio</strong><br>
+                Dépannage informatique & création de sites web
+            </p>
+
+        </td>
+    </tr>
+
+    <tr>
+        <td style="background:#0b1220;color:#cbd5e1;padding:18px;text-align:center;font-size:12px;">
+            RH Digital Studio — Gaillon et alentours<br>
+            contact@rhdigitalstudio.fr
+        </td>
+    </tr>
+
+</table>
+
+</td>
+</tr>
+</table>
+
+</body>
+</html>

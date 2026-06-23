@@ -1,0 +1,112 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block title %}Recherche globale{% endblock %}
+
+{% block content %}
+
+<div class="bg-white rounded p-4">
+    <h1 class="h4 mb-3">🔍 Recherche globale</h1>
+
+    <form method="get" action="{{ path('admin_global_search') }}" class="mb-4">
+        <input
+            type="text"
+            name="q"
+            value="{{ query }}"
+            placeholder="Nom client, email, facture, devis, intervention..."
+            class="form-control"
+            autofocus
+        >
+    </form>
+
+    {% if query %}
+
+        <h2 class="h5 mt-4">👤 Clients</h2>
+
+        {% if clients is empty %}
+            <p class="text-muted">Aucun client trouvé.</p>
+        {% else %}
+            {% for result in clients %}
+                {% set client = result.entity %}
+
+                <div class="mb-2">
+                    <a href="{{ result.url }}">
+                        {{ client.firstName }} {{ client.lastName }}
+                    </a>
+
+                    <span class="text-muted">
+                        — {{ client.email }}
+                    </span>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <h2 class="h5 mt-4">🔧 Interventions / documents</h2>
+
+        {% if groupedInterventions is empty %}
+            <p class="text-muted">Aucune intervention trouvée.</p>
+        {% else %}
+
+            <div class="search-client-results">
+
+                {% for group in groupedInterventions %}
+
+                    <div class="search-client-card">
+
+                        <div class="search-client-header">
+                            <strong>
+                                👤 {{ group.client.firstName }} {{ group.client.lastName }}
+                            </strong>
+
+                            <span class="search-count-badge">
+                                {{ group.interventions|length }} intervention(s)
+                            </span>
+
+                            <span class="text-muted">
+                                {{ group.client.email }}
+                            </span>
+
+                            <a href="{{ group.clientUrl }}" class="btn btn-sm btn-outline-primary">
+                                👤 Voir le client
+                            </a>
+                        </div>
+
+                        <div class="search-intervention-list">
+
+                            {% for result in group.interventions %}
+                                {% set intervention = result.entity %}
+
+                                <a href="{{ result.url }}" class="search-intervention-item">
+                                    <span>
+                                        🔧
+                                        {{ intervention.interventionDate ? intervention.interventionDate|date('d/m/Y') : '-' }}
+                                        — #{{ intervention.id }}
+                                        — {{ intervention.type }}
+                                    </span>
+
+                                    <small>
+                                        {% if intervention.invoiceNumber %}
+                                            {{ intervention.invoiceNumber }}
+                                        {% endif %}
+
+                                        {% if intervention.quoteNumber %}
+                                            — {{ intervention.quoteNumber }}
+                                        {% endif %}
+                                    </small>
+                                </a>
+
+                            {% endfor %}
+
+                        </div>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% endif %}
+
+    {% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,523 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content %}
+<div class="ea-dashboard">
+
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4">
+        <div>
+            <h1 class="h3 mb-1">Tableau de bord</h1>
+            <p class="text-muted small mb-0">
+                Vue d’ensemble de l’activité de RH Digital Studio.
+            </p>
+        </div>
+        <div class="mt-3 mt-md-0">
+            <a href="{{ path('app_home') }}" class="btn btn-outline-secondary btn-sm me-2" target="_blank">
+                Voir le site
+            </a>
+            
+        </div>
+    </div>
+
+            {# -------- WIDGETS INTerventions -------- #}
+    <div class="dashboard-today">
+
+        <div class="dashboard-alert-card blue">
+            <div class="value">{{ todayInterventionsCount }}</div>
+            <div class="label">📅 RDV aujourd'hui</div>
+        </div>
+
+        <div class="dashboard-alert-card green">
+            <div class="value">{{ pendingRevenue|default(0)|number_format(2, ',', ' ') }} €</div>
+            <div class="label">💰 À encaisser</div>
+        </div>
+
+        <div class="dashboard-alert-card orange">
+            <div class="value">{{ pendingQuotesCount }}</div>
+            <div class="label">📄 Devis en attente</div>
+        </div>
+
+        <div class="dashboard-alert-card red">
+            <div class="value">{{ unpaidInvoicesCount }}</div>
+            <div class="label">⚠ Factures impayées</div>
+        </div>
+
+    </div>
+
+    <div class="admin-stats-grid">
+    
+
+        <div class="admin-stat-card">
+            <span>CA du mois</span>
+            <strong>{{ monthlyRevenue|number_format(2, ',', ' ') }} €</strong>
+            <small>Interventions terminées</small>
+        </div>
+
+        <div class="admin-stat-card">
+            <span>Interventions ce mois-ci</span>
+            <strong>{{ interventionsThisMonth }}</strong>
+            <small>Sur le mois en cours</small>
+        </div>
+
+        <div class="admin-stat-card">
+            <span>En attente</span>
+            <strong>{{ pendingInterventions }}</strong>
+            <small>Interventions planifiées</small>
+        </div>
+
+        <div class="admin-stat-card">
+            <span>À facturer</span>
+            <strong>{{ toInvoiceInterventions }}</strong>
+            <small>À transformer en facture</small>
+        </div>
+
+    </div>
+
+
+    <div class="admin-stats-grid mt-4">
+
+        <div class="admin-stat-card">
+            <span>🧾 CA facturé du mois</span>
+            <strong>{{ invoicedRevenueThisMonth|number_format(2, ',', ' ') }} €</strong>
+            <small>Factures générées ce mois</small>
+        </div>
+
+        <div class="admin-stat-card">
+            <span>💰 CA encaissé du mois</span>
+            <strong>{{ paidRevenueThisMonth|number_format(2, ',', ' ') }} €</strong>
+            <small>Factures payées ce mois</small>
+        </div>
+
+        <div class="admin-stat-card">
+            <span>📈 CA encaissé de l'année</span>
+            <strong>{{ paidRevenueThisYear|number_format(2, ',', ' ') }} €</strong>
+            <small>Factures payées cette année</small>
+        </div>
+
+    </div>
+
+
+    {# -------- WIDGETS INTerventions -------- #}
+    
+    <div class="bg-white rounded p-3 mt-4">
+        <h2 class="h5 mb-3">📅 Agenda du jour</h2>
+
+        {% if todayInterventions is empty %}
+            <div class="text-center py-4">
+                <i class="fa fa-calendar-check fa-2x text-success mb-3"></i>
+
+                <h5>Aucun rendez-vous aujourd'hui</h5>
+
+                <p class="text-muted mb-0">
+                    Profitez-en pour traiter vos devis et votre facturation.
+                </p>
+            </div>
+        {% else %}
+            <div class="dashboard-day-timeline">
+
+                {% for intervention in todayInterventions %}
+                {% set interventionUrl = ea_url()
+                    .setController('App\\Controller\\Admin\\InterventionCrudController')
+                    .setAction('detail')
+                    .setEntityId(intervention.id)
+                %}
+                    <div class="day-event">
+
+                        <div class="day-event-time">
+                            {{ intervention.scheduledAt ? intervention.scheduledAt|date('H:i') : '-' }}
+                        </div>
+
+                        <div class="day-event-card">
+                            <div class="day-event-header">
+                                <strong>
+                                    {{ intervention.client.firstName }}
+                                    {{ intervention.client.lastName }}
+                                </strong>
+
+                                {% if intervention.priority == 'urgent' %}
+                                    <span class="day-event-badge urgent">Urgent</span>
+                                {% elseif intervention.priority == 'critical' %}
+                                    <span class="day-event-badge critical">Critique</span>
+                                {% endif %}
+                            </div>
+
+                            <div class="day-event-type">
+                                {{ intervention.type }}
+                            </div>
+
+                            <div class="day-event-meta">
+                                {% if intervention.client.address %}
+                                    <span>📍 {{ intervention.client.address }}</span>
+                                {% endif %}
+
+                                {% if intervention.status == 'planned' %}
+                                    <span>🟦 Planifiée</span>
+                                {% elseif intervention.status == 'in_progress' %}
+                                    <span>🟧 En cours</span>
+                                {% elseif intervention.status == 'done' %}
+                                    <span>🟩 Terminée</span>
+                                {% endif %}
+                            </div>
+                            <div class="day-event-actions">
+                                <a href="{{ interventionUrl }}" class="day-event-link">
+                                    <i class="fa fa-eye"></i>
+                                    Voir l’intervention
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                {% endfor %}
+
+            </div>
+        {% endif %}
+    </div>
+
+    {# -------- PLANNING DE LA SEMAINE -------- #}
+    <div class="bg-white rounded p-3 mt-4">
+        <h2 class="dashboard-section-title">
+            📅 Planning de la semaine
+        </h2>
+
+        {% if weekInterventions is empty %}
+
+            <div class="empty-state">
+                <i class="fa fa-calendar-week fa-2x text-success mb-3"></i>
+
+                <h5>Aucun rendez-vous prévu</h5>
+
+                <p class="text-muted">
+                    Votre semaine est libre.
+                </p>
+            </div>
+
+        {% else %}
+
+            <div class="week-planning-grid">
+
+                {% for intervention in weekInterventions %}
+                {% set interventionUrl = ea_url()
+                    .setController('App\\Controller\\Admin\\InterventionCrudController')
+                    .setAction('detail')
+                    .setEntityId(intervention.id)
+                %}
+
+                    <div class="week-planning-card
+                        {% if intervention.priority == 'critical' %}
+                            critical
+                        {% elseif intervention.priority == 'urgent' %}
+                            urgent
+                        {% else %}
+                            normal
+                        {% endif %}
+                    ">
+
+                        <div class="week-planning-date">
+                            <div class="week-planning-day">
+                                {{ intervention.scheduledAt ? intervention.scheduledAt|date('d/m') : '-' }}
+                            </div>
+
+                            <div class="week-planning-hour">
+                                {{ intervention.scheduledAt ? intervention.scheduledAt|date('H:i') : '-' }}
+                            </div>
+                        </div>
+
+                        <div class="week-planning-content">
+
+                            <div class="week-planning-header">
+                                <h5>
+                                    {{ intervention.client.firstName }}
+                                    {{ intervention.client.lastName }}
+                                </h5>
+
+                                {% if intervention.priority == 'critical' %}
+                                    <span class="badge-critical">Critique</span>
+                                {% elseif intervention.priority == 'urgent' %}
+                                    <span class="badge-urgent">Urgent</span>
+                                {% endif %}
+                            </div>
+
+                            <div class="week-planning-type">
+                                {{ intervention.type }}
+                            </div>
+
+                            {% if intervention.client.address %}
+                                <div class="week-planning-address">
+                                    📍 {{ intervention.client.address }}
+                                </div>
+                            {% endif %}
+                            <div class="week-planning-actions">
+                                <a href="{{ interventionUrl }}" class="week-planning-link">
+                                    <i class="fa fa-eye"></i>
+                                    Voir l’intervention
+                                </a>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% endif %}
+    </div>
+
+    <div class="bg-white rounded p-3 mt-4">
+        <h2 class="h5 mb-3">💰 Factures à relancer</h2>
+
+        {% if invoicesToRemind is empty %}
+            <div class="text-center py-4">
+                <i class="fa fa-circle-check fa-2x text-success mb-3"></i>
+
+                <h5>Aucune facture à relancer</h5>
+
+                <p class="text-muted mb-0">
+                    Tous les paiements sont à jour.
+                </p>
+            </div>
+        {% else %}
+
+            <div class="invoice-reminder-grid">
+
+                {% for intervention in invoicesToRemind %}
+
+                    {% set interventionUrl = ea_url()
+                        .setController('App\\Controller\\Admin\\InterventionCrudController')
+                        .setAction('detail')
+                        .setEntityId(intervention.id)
+                    %}
+
+                    <div class="invoice-reminder-card">
+
+                        <div class="invoice-reminder-header">
+                            <div>
+                                <h5>
+                                    {{ intervention.client.firstName }}
+                                    {{ intervention.client.lastName }}
+                                </h5>
+
+                                <div class="invoice-number">
+                                    {{ intervention.invoiceNumber }}
+                                </div>
+                            </div>
+
+                            <div class="invoice-amount">
+                                {{ intervention.price|number_format(2, ',', ' ') }} €
+                            </div>
+                        </div>
+
+                        <div class="invoice-reminder-info">
+
+                            <div>
+                                <i class="fa fa-file-invoice"></i>
+                                Envoyée le
+                                {{ intervention.invoiceSentAt ? intervention.invoiceSentAt|date('d/m/Y') : '-' }}
+                            </div>
+
+                            <div>
+                                <i class="fa fa-clock"></i>
+                                Dernière relance :
+                                {{ intervention.lastReminderAt ? intervention.lastReminderAt|date('d/m/Y') : 'Jamais' }}
+                            </div>
+
+                        </div>
+
+                        <div class="invoice-reminder-actions">
+
+                            <a href="{{ interventionUrl }}">
+                                <i class="fa fa-eye"></i>
+                                Voir l'intervention
+                            </a>
+
+                            <a
+                                href="{{ path('admin_intervention_send_reminder', { id: intervention.id }) }}"
+                                class="reminder-btn"
+                            >
+                                <i class="fa fa-envelope"></i>
+                                Relancer
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% endif %}
+    </div>
+
+    
+
+    {# -------- GRAPHIQUE -------- #}
+    <div class="row g-4 mt-4">
+        <div class="col-12 col-xl-8">
+            <div class="bg-white rounded p-3 h-100">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h2 class="h5 mb-0">📈 Chiffre d'affaires encaissé</h2>
+                    <span class="small text-muted">12 derniers mois</span>
+                </div>
+
+                <div style="position: relative; height: 260px;">
+                    <canvas id="contactsChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-xl-4">
+            <div class="bg-white rounded p-3 h-100">
+                <h2 class="h5 mb-3">📩 Derniers messages</h2>
+
+                {% if lastContacts is empty %}
+                    <p class="text-muted small mb-0">Aucun message reçu.</p>
+                {% else %}
+                    {% for contact in lastContacts %}
+                        <div class="dashboard-message-item">
+                            <strong>{{ contact.fullName }}</strong>
+                            <span>{{ contact.subject|u.truncate(35, '…') }}</span>
+                            <small>{{ contact.createdAt ? contact.createdAt|date('d/m/Y H:i') : '' }}</small>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    {# -------- TOP CLIENTS -------- #}
+    <div class="mt-4">
+        <h2 class="h5 mb-3">🏆 Top clients</h2>
+
+        {% if topClients is empty %}
+            <div class="empty-state">
+                <p class="text-muted small mb-0">
+                    Aucun client facturé pour le moment.
+                </p>
+            </div>
+        {% else %}
+            <div class="top-clients-grid">
+                {% for client in topClients %}
+                    <div class="top-client-card">
+                        <div class="top-client-rank">
+                            #{{ loop.index }}
+                        </div>
+
+                        <div class="top-client-content">
+                            <h5>
+                                {{ client.firstName }}
+                                {{ client.lastName }}
+                            </h5>
+
+                            <div class="top-client-meta">
+                                <span>🔧 {{ client.interventions }} intervention(s)</span>
+                                <span>💰 {{ client.totalAmount|number_format(2, ',', ' ') }} € facturés</span>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+
+    {# -------- STATS SITE SECONDAIRES -------- #}
+    <div class="secondary-stats-grid mt-4">
+
+        <div class="secondary-stat-card">
+            <span>📩 Messages total</span>
+            <strong>{{ contactsCount }}</strong>
+            <small>Tous les formulaires reçus.</small>
+        </div>
+
+        <div class="secondary-stat-card">
+            <span>📆 Messages ce mois-ci</span>
+            <strong>{{ contactsThisMonth }}</strong>
+            <small>Sur le mois en cours.</small>
+        </div>
+
+        <div class="secondary-stat-card">
+            <span>🖼 Photos en galerie</span>
+            <strong>{{ photosCount }}</strong>
+            <small>Images publiées.</small>
+        </div>
+
+        <div class="secondary-stat-card">
+            <span>📸 Photos ce mois-ci</span>
+            <strong>{{ photosThisMonth }}</strong>
+            <small>Ajouts récents.</small>
+        </div>
+
+    </div>
+
+
+    {# -------- JS DU GRAPH -------- #}
+    <script
+        src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"
+        crossorigin="anonymous">
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const labels        = {{ chartLabels|json_encode|raw }};
+            const revenueData = {{ revenueData|json_encode|raw }};
+
+            console.log('[Dashboard] labels =', labels);
+            console.log('[Dashboard] revenueData =', revenueData);
+            
+
+            const canvas = document.getElementById('contactsChart');
+            if (!canvas || typeof Chart === 'undefined') {
+                console.warn('[Dashboard] Pas de canvas ou Chart non chargé');
+                return;
+            }
+
+            new Chart(canvas, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                    {
+                        label: 'CA encaissé (€)',
+                        data: revenueData,
+                        borderColor: '#0d6efd',
+                        backgroundColor: 'rgba(13,110,253,0.15)',
+                        fill: true,
+                        tension: 0.35,
+                        pointRadius: 4
+                    }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            ticks: { precision: 0 }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+</div>
+{% endblock %}
+
+
+
