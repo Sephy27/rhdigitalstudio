@@ -27,7 +27,7 @@ class DocumentMailer
     ]);
 
         $email = (new Email())
-            ->from('contact@rhdigitalstudio.fr')
+            ->from('contact@rh-digitalstudio.com')
             ->to($intervention->getClient()->getEmail())
             ->subject('Votre devis RH Digital Studio - '.$intervention->getQuoteNumber())
             ->html($html)
@@ -49,7 +49,7 @@ class DocumentMailer
         ]);
 
         $email = (new Email())
-            ->from('contact@rhdigitalstudio.fr')
+            ->from('contact@rh-digitalstudio.com')
             ->to($intervention->getClient()->getEmail())
             ->subject('Votre facture RH Digital Studio - '.$intervention->getInvoiceNumber())
             ->html($html)
@@ -68,7 +68,7 @@ class DocumentMailer
         ]);
 
         $email = (new Email())
-            ->from('contact@rhdigitalstudio.fr')
+            ->from('contact@rh-digitalstudio.com')
             ->to($intervention->getClient()->getEmail())
             ->subject('Relance facture - '.$intervention->getInvoiceNumber())
             ->html($html)

@@ -127,9 +127,9 @@ final class ContactController extends AbstractController
             $entityManager->flush();
 
             $email = (new TemplatedEmail())
-                ->from('contact@rhdigitalstudio.fr')
+                ->from('contact@rh-digitalstudio.com')
                 ->replyTo($contactData['email'])
-                ->to('contact@rhdigitalstudio.fr')
+                ->to('contact@rh-digitalstudio.com')
                 ->subject('Nouvelle demande - ' . ($contactData['service'] ?: 'Contact'))
                 ->htmlTemplate('emails/contact.html.twig')
                 ->textTemplate('emails/contact.txt.twig')
