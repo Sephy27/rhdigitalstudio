@@ -1187,3 +1187,33 @@ body.ea .sidebar-logo{
 
     border: 1px solid #bfdbfe;
 }
+
+.dashboard-empty-state {
+    min-height: 150px;
+    padding: 32px 16px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    text-align: center;
+}
+
+.dashboard-empty-state i {
+    font-size: 30px;
+    margin-bottom: 6px;
+}
+
+.dashboard-empty-state h5 {
+    margin: 0;
+    color: #0f172a;
+    font-weight: 800;
+}
+
+.dashboard-empty-state p {
+    margin: 0;
+    color: #64748b;
+    font-size: 14px;
+}
