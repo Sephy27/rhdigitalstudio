@@ -558,19 +558,29 @@ class InterventionCrudController extends AbstractCrudController
     public function sendQuote(
         Intervention $intervention,
         DocumentMailer $documentMailer,
+        DocumentNumberGenerator $numberGenerator,
         EntityManagerInterface $entityManager,
         Request $request
     ): RedirectResponse {
 
-        $documentMailer->sendQuote($intervention);
+        if (!$intervention->getQuoteNumber()) {
+            $intervention->setQuoteNumber($numberGenerator->generateQuoteNumber());
+            $intervention->setQuoteAt(new \DateTimeImmutable());
+        }
 
-        $intervention->setQuoteSentAt(new \DateTimeImmutable());
-        
+        if (!$intervention->getQuoteAt()) {
+            $intervention->setQuoteAt(new \DateTimeImmutable());
+        }
 
         if ($intervention->getQuoteStatus() === 'draft') {
             $intervention->setQuoteStatus('sent');
         }
+
+        $intervention->setQuoteSentAt(new \DateTimeImmutable());
+
         $entityManager->flush();
+
+        $documentMailer->sendQuote($intervention);
 
         $this->addFlash('success', 'Le devis a été envoyé par email.');
 
