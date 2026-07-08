@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\RateLimiter\RateLimiterFactory;
+use Symfony\Component\RateLimiter\RateLimiterFactoryInterface;
 
 final class ContactController extends AbstractController
 {
@@ -20,7 +20,7 @@ final class ContactController extends AbstractController
         Request $request,
         MailerInterface $mailer,
         EntityManagerInterface $entityManager,
-        RateLimiterFactory $contactFormLimiter
+        RateLimiterFactoryInterface $contactFormLimiter
     ): Response {
 
         //validation CSRF

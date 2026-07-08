@@ -7,10 +7,11 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Mime\MimeTypes;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Vich\UploaderBundle\Mapping\Attribute\Uploadable;
+use Vich\UploaderBundle\Mapping\Attribute\UploadableField;
 
 #[ORM\Entity(repositoryClass: GalerieRepository::class)]
-#[Vich\Uploadable]
+#[Uploadable]
 #[ORM\HasLifecycleCallbacks]
 class Galerie
 {
@@ -25,7 +26,7 @@ class Galerie
     #[ORM\Column(length: 255)]
     private ?string $featuredImage = null;
 
-    #[Vich\UploadableField(mapping: 'uploads', fileNameProperty: 'featuredImage')]
+    #[UploadableField(mapping: 'uploads', fileNameProperty: 'featuredImage')]
     #[Assert\File(maxSize: '50M', mimeTypes: [
         // Images
         'image/jpeg',
