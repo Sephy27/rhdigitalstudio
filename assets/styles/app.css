@@ -1742,3 +1742,11 @@ h2 {
     opacity: 0;
     pointer-events: none;
 }
+
+.pricing-note {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: #bfc7d5;
+    line-height: 1.4;
+    font-style: italic;
+}
