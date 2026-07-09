@@ -64,6 +64,10 @@
 
         <p>
             RH Digital Studio<br>
+            Romain Hartmann - Entrepreneur individuel<br>
+            SIRET : 107 341 216 00011<br>
+            Code APE : 6209Z<br>
+            TVA non applicable, art. 293 B du CGI<br>
             Gaillon et alentours<br>
             contact@rh-digitalstudio.com<br>
             07 43 76 01 40
@@ -122,7 +126,7 @@
 </div>
 
 <div class="box report-section">
-    <div class="title">Actions réalisées</div>
+    <div class="title">Prestations réalisées</div>
     <p>{{ intervention.actionsDone ?: 'Non renseigné' }}</p>
 </div>
 {% if intervention.recommendations %}
@@ -148,7 +152,7 @@
 
     <p>
         <strong>Prix :</strong>
-        {{ intervention.price|number_format(2, ',', ' ') }} €
+        {{ intervention.price ? intervention.price|number_format(2, ',', ' ') ~ ' €' : 'Non renseigné' }}
         <br><br>
 
         <strong>Facture :</strong>
@@ -238,7 +242,10 @@
 </div>
 
 <div class="footer">
-    RH Digital Studio — Dépannage informatique & création de sites web — Gaillon et alentours
+    RH Digital Studio - Romain Hartmann EI -
+    SIRET : 107 341 216 00011 -
+    Code APE : 6209Z -
+    TVA non applicable - article 293 B du Code général des impôts - contact@rh-digitalstudio.com
 </div>
 
 </body>

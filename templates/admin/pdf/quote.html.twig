@@ -13,10 +13,18 @@
         <img src="images/logo_header.png" class="logo">
 
         <p>
-            RH Digital Studio<br>
-            Gaillon et alentours<br>
+            <strong>RH Digital Studio</strong><br>
+            Romain Hartmann - Entrepreneur individuel<br>
+            24 Résidence le Chemin Vert<br>
+            27940 Le Val d'Hazey<br><br>
+
+            Tél. : 07 43 76 01 40<br>
             contact@rh-digitalstudio.com<br>
-            07 43 76 01 40
+            https://rh-digitalstudio.com<br><br>
+
+            SIREN : 107 341 216<br>
+            SIRET : 107 341 216 00011<br>
+            Code APE : 6209Z
         </p>
     </div>
 
@@ -27,9 +35,11 @@
             {{ intervention.client.firstName }}
             {{ intervention.client.lastName }}<br>
 
-            {{ intervention.client.email }}<br>
+            {{ intervention.client.address ?: 'Adresse non renseignée' }}<br>
 
-            {{ intervention.client.phone }}
+            {{ intervention.client.email ?: 'Email non renseigné' }}<br>
+
+            {{ intervention.client.phone ?: 'Téléphone non renseigné' }}
         </p>
     </div>
 
@@ -45,7 +55,7 @@
 </div>
 
 <div class="box">
-    <div class="title">Intervention</div>
+    <div class="title">Prestation prévue</div>
     <p>
         Date : {{ intervention.interventionDate|date('d/m/Y H:i') }}<br>
         Type : {{ intervention.type }}<br>
@@ -67,7 +77,7 @@
             <td>
                 <strong>{{ intervention.type }}</strong><br>
                 Problème : {{ intervention.problem }}<br>
-                Actions : {{ intervention.actionsDone ?: 'Non renseigné' }}
+                Prestations prévues  : {{ intervention.actionsDone ?: 'À définir lors de l\'intervention' }}
             </td>
             <td>{{ intervention.duration ?: '-' }}</td>
             <td>{{ intervention.price|number_format(2, ',', ' ') }} €</td>
@@ -76,11 +86,15 @@
 </table>
 
 <div class="total">
-    Montant estimé : {{ intervention.price|number_format(2, ',', ' ') }} €
+    <strong>Total TTC :</strong> {{ intervention.price|number_format(2, ',', ' ') }} €
 </div>
 
 <p class="vat">
-    TVA non applicable, article 293 B du CGI.
+    TVA non applicable - article 293 B du Code général des impôts.
+</p>
+
+<p>
+    Devis valable 30 jours à compter de sa date d’émission.
 </p>
 
 <div class="signature">
@@ -88,7 +102,7 @@
     <table class="signature-table">
         <tr>
             <td>
-                Signature client
+                Signature client précédée de la mention « Bon pour accord »
             </td>
 
             <td>
@@ -100,7 +114,10 @@
 </div>
 
 <div class="footer">
-    RH Digital Studio — Dépannage informatique & création de sites web — Gaillon et alentours
+    RH Digital Studio - Romain Hartmann EI -
+    SIRET : 107 341 216 00011 -
+    Code APE : 6209Z -
+    TVA non applicable, art. 293 B du CGI
 </div>
 
 </body>
