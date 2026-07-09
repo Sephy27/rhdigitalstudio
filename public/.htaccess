@@ -23,6 +23,9 @@ DirectoryIndex index.php
     Options +SymLinksIfOwnerMatch
 
     RewriteEngine On
+    # Redirect www to non-www
+    RewriteCond %{HTTP_HOST} ^www\.rh-digitalstudio\.com$ [NC]
+    RewriteRule ^(.*)$ https://rh-digitalstudio.com/$1 [L,R=301]
 
     # Determine the RewriteBase automatically and set it as environment variable.
     # If you are using Apache aliases to do mass virtual hosting or installed the
