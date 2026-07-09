@@ -30,6 +30,7 @@ class SitemapController
 
             $xml .= "  <url>\n";
             $xml .= '    <loc>' . htmlspecialchars($loc, ENT_XML1) . "</loc>\n";
+            $xml .= '    <lastmod>' . date('Y-m-d') . "</lastmod>\n";
             $xml .= '    <changefreq>' . $url['changefreq'] . "</changefreq>\n";
             $xml .= '    <priority>' . $url['priority'] . "</priority>\n";
             $xml .= "  </url>\n";
